@@ -1,0 +1,80 @@
+package StudentDatabase;
+import java.util.Scanner;
+
+ public class student {
+		private String firstName;
+		private String lastName;
+		private int gradeYear;
+		private String studentID;
+		private String courses = "";
+		private int feebalance = 0;
+		private  static int costofCourse = 50000;
+		private  static int id = 1000;
+
+		public student()
+		{
+			Scanner in =new Scanner(System.in);
+	        System.out.print("Enter the student First Name: ");
+	        this.firstName =in.nextLine();
+
+	        System.out.print("Enter the student Last Name: ");
+	        this.lastName =in.nextLine();
+
+	        System.out.print("\nYEAR OF JOINING : \n1 - Fresher\n2 - Sophomore\n3 - Junior\n4 - Senior\nEnter the joining year of student: ");
+	        this.gradeYear=in.nextInt();
+	        
+	        setstudentId();
+	      //11  System.out.println(firstName+ " " +lastName+ " " +gradeYear+ studentID);
+	        
+		}
+		private void setstudentId()
+		{
+			id++;
+			this.studentID = gradeYear +""+ id;
+		}
+	public void enroll()
+	{
+	   do {
+		System.out.print("enter the course to enroll(Q to quit): ");
+		Scanner in=new Scanner(System.in);
+		String course=in.nextLine();
+		if(!course.equals("Q"))
+		{
+			courses = courses + "\n " +course;
+			feebalance = feebalance + costofCourse; 
+		}
+		else
+		{
+			System.out.println("break!");
+			break;
+		}
+	   }
+		while(1 != 0);
+		//System.out.println("enrolled in: "+courses);
+	     
+		}
+	public void viewbalance()
+	{
+		System.out.println(" fees for the Course :" + feebalance);
+
+	}
+	public void paytution()
+	{
+		viewbalance();
+		System.out.print("Enter your payment : ");
+		Scanner in=new Scanner(System.in);
+		int payment =in.nextInt();
+		feebalance = feebalance - payment;
+		System.out.println("Thankyou for the Payment " +payment);
+		//viewbalance();
+	}
+	public String toString()
+	{
+		return "Name: "+ firstName + " " +lastName +
+				"\nJoining Year: " + gradeYear +
+				"\nStudent ID: " + studentID +
+				"\nCourses Enrolled :" + courses +
+				"\nBalance : "+ feebalance;
+
+	}
+}
